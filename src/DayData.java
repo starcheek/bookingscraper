@@ -11,7 +11,8 @@ public class DayData {
                 "Standarta divvietīgs numurs (1 gulta)",
                 "\"Junior suite\" numurs",
                 "\"Suite\" numurs",
-                "Standarta divvietīgs numurs (2 gultas)"
+                "Standarta divvietīgs numurs (2 gultas)",
+
         };
         public String[] bahnhofs = {
                 "Standarta divvietīgs numurs (1 gulta)",
@@ -92,6 +93,7 @@ public class DayData {
 
         outerLoup:
         for (Element nameElement : names) {
+
             String roomId = nameElement.attr("data-room-id");
             for (Element opt : options) {
                 String optNumber = opt.attr("data-room-id");
@@ -100,16 +102,19 @@ public class DayData {
                     for (int i = 0; i < opt.getElementsByTag("option").size()-1; i++) {
 
                         try {
-
                             roomMapAfter.put(nameElement.text(), roomMapAfter.get(nameElement.text()) - 1);
                         } catch (NullPointerException e){
                             System.out.println(nameElement.text());
                         }
-                        continue outerLoup;
+
+
                     }
+                    continue outerLoup;
+
                 }
             }
         }
+
 
         roomList = new ArrayList<>();
         for(String beforeKey : roomMapAfter.keySet()){
@@ -122,7 +127,6 @@ public class DayData {
                 roomList.add(new Room(beforeKey, true));
             }
         }
-
     }
 
 
